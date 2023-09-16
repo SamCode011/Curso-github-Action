@@ -13,4 +13,4 @@ jobs:
       - name: Saludar
         run: echo "$SALUDO, $NOMBRE. Hoy es $DIA_DE_SEMANA!"
         env:
-          NOMBRE: Juan
+          NOMBRE: Sam
