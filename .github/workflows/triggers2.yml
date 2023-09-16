@@ -1,0 +1,51 @@
+name: Reto 3 - Aprende a usar Expresiones
+on:
+  push:
+    branches:
+      - aprendiendo-github-actions
+
+  workflow_dispatch:
+    inputs:
+      nombre:
+        description: 'Nombre'
+        required: true
+        default: Ingresa tu nombre
+        type: string
+      edad:
+        description: 'Edad'
+        required: true
+        type: number
+      fruta:
+        description: 'Lista de Frutas'
+        default: Manzana
+        required: true
+        type: choice
+        options:
+        - Frutilla
+        - Pera
+        - Manzana
+jobs:
+    fruta-favorita:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Fruta Seleccionada
+        run: |
+          if ${{ inputs.fruta == 'Frutilla' }}; then
+            echo ${{ inputs.nombre }} Tu fruta favorita es la Frutilla 
+          elif ${{ inputs.fruta == 'Pera' }}; then
+            echo ${{ inputs.nombre }} Tu fruta favorita es la Pera
+          else 
+            echo ${{ inputs.nombre }} Tu fruta favorita es la Manzana
+          fi
+    mayor:
+      if: ${{ inputs.edad >= 18 }} 
+      runs-on: ubuntu-latest
+      steps:
+        - name: Correr script
+          run: echo ${{ inputs.nombre }} es mayor de edad
+    menor:
+      if: ${{ inputs.edad < 18 }} 
+      runs-on: ubuntu-latest
+      steps:
+        - name: Correr script
+          run: echo ${{ inputs.nombre }} es menor de edad
